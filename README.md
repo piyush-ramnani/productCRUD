@@ -1,0 +1,112 @@
+# productCRUD app
+
+This is an app for an assignment of a job application at studentkhabri to show CRUD operations in an application. This project has following features:
+
+1. Name of the product
+2. Description of the product
+3. Image of the product
+
+Below are some of the learnings while creating this project.
+
+## Installing composer
+
+Since php comes as default in MAC, we would need to install composer.
+This can be done with the help of `brew` package manager.
+
+```bash
+brew install composer
+```
+
+## Installing Databases
+
+-   For our application we are using `MySQL Community Edition`.
+-   To download and start MySQL server you can visit: `https://dev.mysql.com/downloads/mysql/`
+-   For GUI we are using `MySQL Workbench` which can also be downloaded from the above URL.
+-   This Youtube tutorial might come in handy: `https://www.youtube.com/watch?v=7S_tz1z_5bA&t=4803s&ab_channel=ProgrammingwithMosh`
+
+## Setting up MySQL Workbench
+
+-   Create new connection
+-   Head to Schemas and create a new DB called `productCRUD`
+-   Host name would be: `127.0.0.1` Port: `3306`
+-   Set up password for MySQL server by clicking `Store in Keychain`
+-   Test the connection
+
+## Setting up .env file for DB
+
+-   Create a new DB called `productCRUD`
+-   This is how the file's db section should look:
+    ![db-connection](./Screenshots/db-connection.png)
+
+## Creating first laravel application
+
+-   In VSCODE Go to the directory of your choice and type in `composer create-project laravel/laravel example-app` in the terminal
+-   To run the application you can use `php artisan serve` command. This will start a local server on port `8000`.
+
+The directory structure looks something like this:
+![app-directory](./Screenshots/app-directory.png)
+
+# Understanding the code:
+
+### views
+
+In `resources -> views -> Welcome.blade.php` file is present. This will act as the home page of our app.
+
+### Models and migration
+
+-   To generate migration files (tables creation), use following command:
+    `php artisan make:model Product -m`
+-   This will generate a `model.php` file in `app -> Models`.
+
+-   Also it creates a folder named `migrations` inside `database -> migrations`, where all the tables related stuff resides.
+
+-   This process creates a blueprint to be migrated to the Databases. The blueprint contains all the columns that need to be created in the table.
+
+-   This is how a migration file should look:
+
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->string('image');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('products');
+    }
+};
+```
+
+-   a migration table is managed by laravel's `schema builder`, which you can use to create and modify tables.
+
+### Controllers
+
+-   We are using controllers to serve pages in this application.
+
+-   use `php artisan make:controller productController` and see app\Http\Controllers\productController.php.
+
+-   We will also need to change the default route in routes -> web.php to:
+
+```php
+Route::get('/', [productController::class, 'index'])-> name('products.index');
+```
