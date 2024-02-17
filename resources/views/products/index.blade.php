@@ -17,7 +17,7 @@
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="/">Products</a>
+                        <a class="nav-link active text-light" aria-current="page" href="/home">Products</a>
                     </li>
                     </li>
                 </ul>

@@ -8,8 +8,9 @@ use App\Models\Product;
 class productController extends Controller
 {
     public function index(){
+        $products = Product::all();
+        return view('products.index', ['products' => $products]);
 
-        return view ('products.index', ['products' => Product::get()]); //Fetches the products
     }
 
     public function create(){
