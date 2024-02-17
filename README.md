@@ -34,9 +34,11 @@ brew install composer
 
 ## Setting up .env file for DB
 
--   Create a new DB called `productCRUD`
+-   Created a new DB called `productCRUD`
 -   This is how the file's db section should look:
     ![db-connection](./Screenshots/db-connection.png)
+- Change the .env.example file -> .env and make the changes shown in the picture.
+- This will connect you to the Database on my machine, if you really want to test it.
 
 ## Creating first laravel application
 
