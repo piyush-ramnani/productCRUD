@@ -11,7 +11,7 @@ Below are some of the learnings while creating this project.
 ## Installing composer
 
 Since php comes as default in MAC, we would need to install composer.
-This can be done with the help of `brew` package manager.
+This can be done with the help of `brew` package manager on mac
 
 ```bash
 brew install composer
@@ -41,6 +41,7 @@ brew install composer
 ## Creating first laravel application
 
 -   In VSCODE Go to the directory of your choice and type in `composer create-project laravel/laravel example-app` in the terminal
+
 -   To run the application you can use `php artisan serve` command. This will start a local server on port `8000`.
 
 The directory structure looks something like this:
@@ -50,13 +51,13 @@ The directory structure looks something like this:
 
 ### views
 
-In `resources -> views -> Welcome.blade.php` file is present. This will act as the home page of our app.
+In `resources -> views -> Welcome.blade.php` file is present by default. This will act as the home page of our app initially, but then is changed to `index.blade.php` later on
 
 ### Models and migration
 
 -   To generate migration files (tables creation), use following command:
     `php artisan make:model Product -m`
--   This will generate a `model.php` file in `app -> Models`.
+-   This will generate a `Product.php` file in `app -> Models`.
 
 -   Also it creates a folder named `migrations` inside `database -> migrations`, where all the tables related stuff resides.
 
@@ -97,7 +98,7 @@ return new class extends Migration
 };
 ```
 
--   a migration table is managed by laravel's `schema builder`, which you can use to create and modify tables.
+- a migration table is managed by laravel's `schema builder`, which you can use to create and modify tables.
 
 ### Controllers
 
@@ -105,8 +106,33 @@ return new class extends Migration
 
 -   use `php artisan make:controller productController` and see app\Http\Controllers\productController.php.
 
--   We will also need to change the default route in routes -> web.php to:
+-   We will also need to change the default route in routes -> `web.php` under routes to:
 
 ```php
 Route::get('/', [productController::class, 'index'])-> name('products.index');
 ```
+
+- name is optional.
+
+# APIs
+
+### GET | `https://localhost:8000/ `-> `index()` -> [index.blade.php]  -> Returns a list of all products.
+
+### POST | `https://localhost:8000/products/create `-> `create()` | [create.blade.php]  -> Takes user to the create page
+
+### POST | `https://localhost:8000/products/store` -> `store()` | [create.blade.php] -> Validates and saves the data in the DB
+
+### POST | `https://localhost:8000/products/{ id }/edit` -> `edit($id)` | [edit.blade.php] -> Takes the user to Edit page of the product
+
+### PUT | `https://localhost:8000/products/{ id }/update` -> `update($request, $id)` | [edit.blade.php] -> Similar to create, updates the product information in DB
+
+### DELETE | `https://localhost:8000/products/{ id }/delete` -> `destroy($id)` | [index.blade.php] -> Deletes the product
+
+
+# Challenges
+
+- Environmental set up was not easy in mac, had to follow a lot of tutorials.
+
+- Since I come from a `JavaScript` backgrouind and I have built full stack application in NodeJS, ReactJS, MongoDB, it was somewhat difficult to adjust to the syntax. 
+
+- Connecting to the DB was the most difficult bit as `phpmyadmin` is not mac-friendly so I had to use `MySQL Workbench`
