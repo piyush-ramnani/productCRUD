@@ -137,4 +137,6 @@ Route::get('/', [productController::class, 'index'])-> name('products.index');
 
 - Since I come from a `JavaScript` backgrouind and I have built full stack application in NodeJS, ReactJS, MongoDB, it was somewhat difficult to adjust to the syntax. 
 
-- Connecting to the DB was the most difficult bit as `phpmyadmin` is not mac-friendly so I had to use `MySQL Workbench`
+- Connecting to the DB was the most difficult bit as `phpmyadmin` is not mac-friendly so I had to use `MySQL Workbench`. Here's it how the data looks in the Workbench for the database:
+
+![database-workbench](./Screenshots/database-workbench.png)
