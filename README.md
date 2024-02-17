@@ -8,6 +8,8 @@ This is an app for an assignment of a job application at studentkhabri to show C
 
 Below are some of the learnings while creating this project.
 
+### Clone the repo and run `php artisan serve` to run the project. You might see some test data initially on th homepage.
+
 ## Installing composer
 
 Since php comes as default in MAC, we would need to install composer.
