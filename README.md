@@ -5,6 +5,9 @@ This is an app for an assignment of a job application at studentkhabri to show C
 1. Name of the product
 2. Description of the product
 3. Image of the product
+4. Authentication
+
+## Login Credentials: username: `demo@user.com` | password: `demouser`
 
 Below are some of the learnings while creating this project.
 
@@ -113,14 +116,24 @@ return new class extends Migration
 -   We will also need to change the default route in routes -> `web.php` under routes to:
 
 ```php
-Route::get('/', [productController::class, 'index'])-> name('products.index');
+Route::get('/home', [productController::class, 'index'])-> name('products.index');
 ```
 
 - name is optional.
 
+# Authentication
+
+- We are using `laravel breeze for authentication`
+
+- breeze provide a boiler plate authentication for login and register.
+
+- Without logging in, the below routes cannot be used as they are all protected with the middleware function which you can find in `Routes` -> `web.php`
+
 # APIs
 
-### GET | `https://localhost:8000/ `-> `index()` -> [index.blade.php]  -> Returns a list of all products.
+### GET | `https://localhost:8000/ `-> `welcome()` -> [welcome.blade.php]  -> Default page served by PHP for laravel to login and register.
+
+### GET | `https://localhost:8000/home `-> `index()` -> [index.blade.php]  -> Returns a list of all products.
 
 ### POST | `https://localhost:8000/products/create `-> `create()` | [create.blade.php]  -> Takes user to the create page
 
